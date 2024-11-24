@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './food-catalog.component.scss'
 })
 export class FoodCatalogComponent {
-
+  
 }

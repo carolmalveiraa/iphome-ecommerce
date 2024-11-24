@@ -1,14 +1,12 @@
 <mat-card class="food-card" appearance="outlined">
     <mat-card-header>
-      <mat-card-title>Whopper</mat-card-title>
-      <mat-card-subtitle>Serve 1 pessoa</mat-card-subtitle>
+      <mat-card-title>{{ food.title }}</mat-card-title>
+      <mat-card-subtitle>{{ food.serves }}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/6e73dce2-a17f-4aef-9035-1409cea198fe/202306291444_13O1_i.jpg" alt="Photo of Whopper">
+    <img mat-card-image src=" {{ food.imageLink }}" alt="{{food.title}}">
     <mat-card-content>
-        <b>R$29,99</b>
-        <p>
-            Um hambúrguer com uma carne bovina grelhada de 113g, pão com gergelim, queijo derretido, picles, salada fresca (alface, cebola, tomate), ketchup e maionese bk.
-        </p>
+        <b>{{food.price}}</b>
+        <p>{{food.description}}</p>
     </mat-card-content>
     <mat-card-actions>
         <button mat-icon-button>
