@@ -12,5 +12,5 @@ import { Food } from '../../models/food';
   styleUrl: './food-card.component.scss'
 })
 export class FoodCardComponent {
-  @Input() food!: Food;
+  @Input() food?: Food;
 }

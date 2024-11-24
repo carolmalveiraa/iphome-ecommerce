@@ -1,4 +1,5 @@
-<mat-card class="food-card" appearance="outlined">
+@if (food){
+    <mat-card class="food-card" appearance="outlined">
     <mat-card-header>
       <mat-card-title>{{ food.title }}</mat-card-title>
       <mat-card-subtitle>{{ food.serves }}</mat-card-subtitle>
@@ -16,3 +17,4 @@
         </button>
     </mat-card-actions>
   </mat-card>
+}
