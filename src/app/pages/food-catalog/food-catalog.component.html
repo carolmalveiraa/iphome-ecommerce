@@ -1,2 +1,5 @@
-<app-food-card [food]="foodArray[0]"></app-food-card>
-<app-food-card [food]="foodArray[1]"></app-food-card>
+<div class="container">
+    @for(foodObj of foodArray; track foodObj.id){
+        <app-food-card [food]="foodObj"></app-food-card>
+    }
+</div>
