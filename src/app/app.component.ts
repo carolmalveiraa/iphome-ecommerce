@@ -8,7 +8,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FoodCardComponent, FoodCatalogComponent, MatSidenavModule],
+  imports: [RouterOutlet, HeaderComponent, FoodCatalogComponent, MatSidenavModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
