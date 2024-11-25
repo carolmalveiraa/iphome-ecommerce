@@ -11,5 +11,9 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  title: string = "Iphome Ecommerce";
+  title: string = "Iphome - Delivery Service";
+
+  openCart() {
+    console.log("Abrindo o carrinho..");
+  }
 }

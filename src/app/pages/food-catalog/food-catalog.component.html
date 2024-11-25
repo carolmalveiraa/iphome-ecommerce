@@ -2,4 +2,7 @@
     @for(foodObj of foodArray; track foodObj.id){
         <app-food-card [food]="foodObj"></app-food-card>
     }
+    @empty {
+        <h2>Não há comidas registradas no momento!</h2>
+    }
 </div>
