@@ -11,9 +11,11 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  @Input() drawer!: MatDrawer;
   title: string = "Iphome - Delivery Service";
 
   openCart() {
+    this.drawer.toggle();
     console.log("Abrindo o carrinho..");
   }
 }
