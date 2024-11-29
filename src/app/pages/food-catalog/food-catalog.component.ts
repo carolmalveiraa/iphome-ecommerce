@@ -41,8 +41,7 @@ export class FoodCatalogComponent {
       id: 4,
       title: "2 Sandubas + 2 Sandubinhas + 2 Bebidas",
       serves: "2 pessoa",
-      description: `2 sanduíches (Escolha um Sanduíche entre: Whopper, Chicken Duplo, Rodeio Duplo, Big King, Whopper de plantas, Stacker Duplo e Cheeseburger Duplo) +
-2 sanduíches entre: (Cheeseburger, cheddar jr, chicken jr e rodeio) + 2 bebidas.`,
+      description: `2 sanduíches (Escolha um Sanduíche entre: Whopper, Chicken Duplo, Rodeio Duplo, Big King, Whopper de plantas, Stacker Duplo e Cheeseburger Duplo) + 2 sanduíches entre: (Cheeseburger, cheddar jr, chicken jr e rodeio) + 2 bebidas.`,
       imageLink:"https://static.ifood-static.com.br/image/upload/t_medium/pratos/6e73dce2-a17f-4aef-9035-1409cea198fe/202408131512_63PG_i.jpg",
       price: 72.95
     },
@@ -73,7 +72,7 @@ export class FoodCatalogComponent {
   ];
 
   warnParentAboutItemAddition(food: Food) {
-    console.log(`Item aicionado ao carrinho ${food.title}`);
+    console.log(`Item adicionado ao carrinho ${food.title}`);
     this.warnApp.emit(food);
   }
 }

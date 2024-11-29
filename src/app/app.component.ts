@@ -23,5 +23,6 @@ export class AppComponent {
       product: food,
       quantity: 1
     });
+    console.log(this.cartItemsArray);
   }
 }

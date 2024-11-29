@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+
 import { Food } from '../../models/food';
 
 
@@ -18,7 +19,7 @@ export class FoodCardComponent {
   @Output() warnFoodCatalog: EventEmitter<Food> = new EventEmitter();
 
   warnParentAboutItemAddition(food: Food) {
-    console.log("Item aicionado ao carrinho ${food.title}");
-    this.warnFoodCatalog.emit();
+    console.log(`Avisa meu pai que eu cliquei no ${food.title}`);
+    this.warnFoodCatalog.emit(food);
   }
 }
