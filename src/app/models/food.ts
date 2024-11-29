@@ -5,4 +5,5 @@ export interface Food {
     description: string;
     imageLink: string;
     price: number;
+    availableInStock?: number;
 }
