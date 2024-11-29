@@ -11,7 +11,6 @@ import { FoodCardComponent } from "../../shared/food-card/food-card.component";
 })
 export class FoodCatalogComponent {
   @Output() warnApp: EventEmitter<Food> = new EventEmitter();
-
   foodArray: Food [] = [
     {
       id: 1,
