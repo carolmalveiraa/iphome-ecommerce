@@ -6,10 +6,7 @@
     </mat-drawer>
 
     <div>
-        <app-food-catalog></app-food-catalog>
-        <button type="button" mat-button (click)="drawer.toggle()">
-            Toggle sidenav
-        </button>
+      <app-food-catalog (warnApp)="addItemToCart($event)"></app-food-catalog>
     </div>
 
 </mat-drawer-container>

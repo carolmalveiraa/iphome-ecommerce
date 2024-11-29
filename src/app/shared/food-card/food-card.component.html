@@ -6,11 +6,11 @@
     </mat-card-header>
     <img mat-card-image src="{{ food.imageLink }}" alt=" Foto de {{food.title}}">
     <mat-card-content>
-        <b>{{food.price}}</b>
+        <b>R$ {{food.price}}</b>
         <p>{{food.description}}</p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-icon-button>
+        <button (click)="warnParentAboutItemAddition(food)" mat-icon-button>
             <mat-icon>
                 add_shopping_cart
             </mat-icon>

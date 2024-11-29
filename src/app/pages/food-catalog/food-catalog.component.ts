@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Food } from '../../models/food';
 import { FoodCardComponent } from "../../shared/food-card/food-card.component";
 
@@ -10,6 +10,8 @@ import { FoodCardComponent } from "../../shared/food-card/food-card.component";
   styleUrl: './food-catalog.component.scss'
 })
 export class FoodCatalogComponent {
+  @Output() warnApp: EventEmitter<Food> = new EventEmitter();
+
   foodArray: Food [] = [
     {
       id: 1,
@@ -69,4 +71,9 @@ export class FoodCatalogComponent {
       price: 39.99
     },
   ];
+
+  warnParentAboutItemAddition(food: Food) {
+    console.log(`Item aicionado ao carrinho ${food.title}`);
+    this.warnApp.emit(food);
+  }
 }

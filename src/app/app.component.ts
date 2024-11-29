@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './shared/header/header.component';
-import { FoodCardComponent } from './shared/food-card/food-card.component';
-import { FoodCatalogComponent } from './pages/food-catalog/food-catalog.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import { CartComponent } from './shared/cart/cart.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
+import { HeaderComponent } from './shared/header/header.component';
+import { FoodCatalogComponent } from './pages/food-catalog/food-catalog.component';
+import { CartComponent } from './shared/cart/cart.component';
+import { CartItem } from './models/cart-item';
+import { Food } from './models/food';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -15,4 +16,12 @@ import { CartComponent } from './shared/cart/cart.component';
 })
 export class AppComponent {
   title = 'iphome-delivery';
+  cartItemsArray: CartItem[] = [];
+
+  addItemToCart(food: Food) {
+    this.cartItemsArray.push({
+      product: food,
+      quantity: 1
+    });
+  }
 }
