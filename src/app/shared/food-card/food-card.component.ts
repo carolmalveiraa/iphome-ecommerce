@@ -20,6 +20,6 @@ export class FoodCardComponent {
 
   warnParentAboutItemAddition(food: Food) {
     console.log(`Avisa meu pai que eu cliquei no ${food.title}`);
-    this.warnFoodCatalog.emit();
+    this.warnFoodCatalog.emit(food);
   }
 }
