@@ -36,9 +36,6 @@ export class CartComponent {
   }
 
   removeItem(item: CartItem) {
-    if (item.quantity <= 0) return;
-    item.quantity--
-    this.totalPrice -= item.product.price;
-    this.totalPrice = Math.max(0, this.totalPrice);
-  }
+    this.cartService.removeItem(item);
+}
 }

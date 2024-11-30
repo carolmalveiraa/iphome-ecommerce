@@ -28,12 +28,14 @@ export class CartService {
 
 // Aumenta a quantidade de um item no carrinho
   addItem(item: CartItem) {
+    if (item.quantity >= item.product.availableInStock) return;
     item.quantity++
     this.totalPrice += item.product.price;
-  }
+
+}
 
   removeItem(item: CartItem) {
-    if (item.quantity <= 0) {
+    if (item.quantity <= 1) {
       const index = this.getItemById(item.product.id);
       this.cartItemsArray.splice(index, 1);
     };
@@ -51,7 +53,7 @@ export class CartService {
         quantity: 1
       });
     } else {
-      this.cartItemsArray[index].quantity++;
+      this.addItem(this.cartItemsArray[index]);
     }
     console.log(this.cartItemsArray);
   }
