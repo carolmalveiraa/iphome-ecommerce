@@ -10,7 +10,7 @@
         <p>{{ food.description }}</p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="addFoodToCart(food)">
             <mat-icon>
                 add_shopping_cart
             </mat-icon>

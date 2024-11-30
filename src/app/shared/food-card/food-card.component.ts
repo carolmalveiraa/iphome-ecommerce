@@ -19,7 +19,7 @@ export class FoodCardComponent {
   constructor(private cartService: CartService) {
   }
 
-  addToCart(food: Food) {
+  addFoodToCart(food: Food) {
     this.cartService.addItemToCart(food);
   }
 }
