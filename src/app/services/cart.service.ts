@@ -28,11 +28,13 @@ export class CartService {
 
 // Aumenta a quantidade de um item no carrinho
   addItem(item: CartItem) {
-    if (item.quantity >= item.product.availableInStock) return;
+    if (item.quantity >= item.product.availableInStock) {
+      console.log("Foi adicionado o máximo disponível em estoque!");return;
+    }
+
     item.quantity++
     this.totalPrice += item.product.price;
-
-}
+  }
 
   removeItem(item: CartItem) {
     if (item.quantity <= 1) {

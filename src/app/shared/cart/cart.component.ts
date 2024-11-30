@@ -29,9 +29,9 @@ export class CartComponent {
   constructor() {
     this.cartService = inject(CartService);
     this.cartItemsArray = this.cartService.getCartArray();
+    this.totalPrice = this.cartService.getTotalPrice();
   }
   addItem(item: CartItem) {
-    item.quantity++
     this.totalPrice += item.product.price;
   }
 
