@@ -8,26 +8,50 @@ import { CartItem } from '../models/cart-item';
 })
 export class CartService {
   private cartItemsArray: CartItem[] = [];
+  private totalPrice: number = 0;
 
   constructor() { }
 
+  getItemById(id: number) {
+    const foundIndex: number = this.cartItemsArray.findIndex((item) => {
+      return item.product.id === id;
+    })
+    return foundIndex;
+  }
+  getTotalPrice() {
+    return this.totalPrice;
+  }
+  // Obtém os itens do carrinho
   getCartArray() {
     return this.cartItemsArray;
   }
 
-  addItemToCart(food: Food) {
-    const foundIndex: number = this.cartItemsArray.findIndex((item) => {
-      return food.id === item.product.id;
-    })
+// Aumenta a quantidade de um item no carrinho
+  addItem(item: CartItem) {
+    item.quantity++
+    this.totalPrice += item.product.price;
+  }
 
-    if (foundIndex == -1) {
+  removeItem(item: CartItem) {
+    if (item.quantity <= 0) {
+      const index = this.getItemById(item.product.id);
+      this.cartItemsArray.splice(index, 1);
+    };
+    item.quantity--
+    this.totalPrice -= item.product.price;
+    this.totalPrice = Math.max(0, this.totalPrice);
+  }
+
+  addItemToCart(food: Food) {
+    const index = this.getItemById(food.id);
+
+    if (index == -1) {
       this.cartItemsArray.push({
         product: food,
         quantity: 1
       });
-    }
-    else {
-      this.cartItemsArray[foundIndex].quantity++;
+    } else {
+      this.cartItemsArray[index].quantity++;
     }
     console.log(this.cartItemsArray);
   }
