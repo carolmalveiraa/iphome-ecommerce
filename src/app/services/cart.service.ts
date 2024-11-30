@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, Signal, WritableSignal } from '@angular/core';
 import { Food } from '../models/food';
 import { CartItem } from '../models/cart-item';
 
@@ -8,18 +8,18 @@ import { CartItem } from '../models/cart-item';
 })
 export class CartService {
   private cartItemsArray: CartItem[] = [];
-  private totalPrice: number = 0;
+  private totalPrice: WritableSignal<number> = signal<number>(0);
+  getTotalPrice: Signal<number>;
 
-  constructor() { }
+  constructor() {
+    this.getTotalPrice = this.totalPrice.asReadonly();
+  }
 
   getItemById(id: number) {
     const foundIndex: number = this.cartItemsArray.findIndex((item) => {
       return item.product.id === id;
     })
     return foundIndex;
-  }
-  getTotalPrice() {
-    return this.totalPrice;
   }
   // Obtém os itens do carrinho
   getCartArray() {
@@ -33,7 +33,9 @@ export class CartService {
     }
 
     item.quantity++
-    this.totalPrice += item.product.price;
+    this.totalPrice.update((previousValue:number) => {
+      return previousValue + item.product.price;
+    });
   }
 
   removeItem(item: CartItem) {
@@ -41,9 +43,12 @@ export class CartService {
       const index = this.getItemById(item.product.id);
       this.cartItemsArray.splice(index, 1);
     };
+
     item.quantity--
-    this.totalPrice -= item.product.price;
-    this.totalPrice = Math.max(0, this.totalPrice);
+    this.totalPrice.update((previousValue:number) => {
+      const currValue = previousValue - item.product.price;
+      return Math.max(currValue, 0);
+    });
   }
 
   addItemToCart(food: Food) {
@@ -53,6 +58,9 @@ export class CartService {
       this.cartItemsArray.push({
         product: food,
         quantity: 1
+      });
+      this.totalPrice.update((previousValue: number) => {
+        return previousValue + food.price;
       });
     } else {
       this.addItem(this.cartItemsArray[index]);

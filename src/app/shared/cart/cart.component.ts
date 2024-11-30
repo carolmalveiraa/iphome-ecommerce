@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal, Signal } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
@@ -22,17 +22,17 @@ import { CartService } from './../../services/cart.service';
 })
 export class CartComponent {
   private cartService: CartService;
-  totalPrice: number = 0;
+  totalPrice: Signal<number> = signal(0);
 
   cartItemsArray: CartItem[] = [];
 
   constructor() {
     this.cartService = inject(CartService);
     this.cartItemsArray = this.cartService.getCartArray();
-    this.totalPrice = this.cartService.getTotalPrice();
+    this.totalPrice = this.cartService.getTotalPrice;
   }
   addItem(item: CartItem) {
-    this.totalPrice += item.product.price;
+    this.cartService.addItem(item);
   }
 
   removeItem(item: CartItem) {
