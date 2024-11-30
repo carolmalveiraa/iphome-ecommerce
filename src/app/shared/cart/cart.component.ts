@@ -1,10 +1,12 @@
-import { Component, Input } from '@angular/core';
-import { CartItem } from '../../models/cart-item';
+import { Component, inject } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
-import { MatListModule } from '@angular/material/list';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+
+import { CartItem } from '../../models/cart-item';
+import { CartService } from './../../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -19,8 +21,15 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './cart.component.scss'
 })
 export class CartComponent {
+  private cartService: CartService;
   totalPrice: number = 0;
-  @Input("cartArr") cartItemsArray: CartItem[] = [];
+
+  cartItemsArray: CartItem[] = [];
+
+  constructor() {
+    this.cartService = inject(CartService);
+    this.cartItemsArray = this.cartService.getCartArray();
+  }
   addItem(item: CartItem) {
     item.quantity++
     this.totalPrice += item.product.price;

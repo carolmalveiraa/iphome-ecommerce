@@ -2,11 +2,11 @@
 
 <mat-drawer-container autosize>
     <mat-drawer #drawer mode="side">
-        <app-cart [cartArr]="cartItemsArray"></app-cart>
+        <app-cart></app-cart>
     </mat-drawer>
 
     <div>
-      <app-food-catalog (warnApp)="addItemToCart($event)"></app-food-catalog>
+      <app-food-catalog></app-food-catalog>
     </div>
 
 </mat-drawer-container>
