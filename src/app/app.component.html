@@ -1,14 +1,12 @@
 <app-header [drawer]="drawer" ></app-header>
 
-<mat-drawer-container autosize>
+<mat-drawer-container style="height: 100%;" autosize>
     <mat-drawer #drawer mode="side">
         <app-cart></app-cart>
     </mat-drawer>
 
     <div>
-      <app-food-form></app-food-form>
+      <router-outlet></router-outlet>
     </div>
 
 </mat-drawer-container>
-
-<router-outlet></router-outlet>
