@@ -1,44 +1,37 @@
-<form>
-  <mat-form-field appearance="outline" class="form-field">
-    <mat-label>ID</mat-label>
-    <input matInput/>
-    <mat-error>ID is required</mat-error>
-    <mat-error>ID must be greater than 0</mat-error>
-  </mat-form-field>
-
+<form [formGroup]="foodForm" (ngSubmit)="submitForm()">
   <mat-form-field appearance="outline" class="form-field">
     <mat-label>Title</mat-label>
-    <input matInput/>
+    <input matInput formControlName="title"/>
     <mat-error>Title is required</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="form-field">
     <mat-label>Serves</mat-label>
-    <input matInput/>
+    <input matInput formControlName="serves"/>
     <mat-error>Serves is required</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="form-field">
     <mat-label>Description</mat-label>
-    <textarea matInput></textarea>
+    <textarea matInput formControlName="description"></textarea>
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="form-field">
     <mat-label>Image Link</mat-label>
-    <input matInput/>
+    <input matInput formControlName="imageLink"/>
     <mat-error>Invalid URL format</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="form-field">
     <mat-label>Price</mat-label>
-    <input matInput/>
+    <input matInput formControlName="price"/>
     <mat-error>Price is required</mat-error>
     <mat-error>Price must be non-negative</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="form-field">
     <mat-label>Available in Stock</mat-label>
-    <input matInput/>
+    <input matInput formControlName="avaibleInStock"/>
     <mat-error>Stock is required</mat-error>
     <mat-error>Stock must be non-negative</mat-error>
   </mat-form-field>

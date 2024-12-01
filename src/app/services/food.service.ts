@@ -72,7 +72,15 @@ export class FoodService {
 ];
   constructor() { }
 
+  getNextId () {
+    return this.foodArray.length + 1;
+  }
+
   getAllFood() {
     return this.foodArray;
+  }
+
+  createFood(newFood: Food) {
+    this.foodArray.push(newFood);
   }
 }
