@@ -13,6 +13,17 @@ export class CartService {
 
   constructor() {
     this.getTotalPrice = this.totalPrice.asReadonly();
+
+    this.cartItemsArray = JSON.parse(localStorage.getItem('cartItemsArray') || "[]");
+
+    if (this.cartItemsArray.length === 0) localStorage.setItem("cartItemsArray", "[]");
+
+
+    this.totalPrice.update(() => this.calculateTotalPrice());
+  }
+
+  calculateTotalPrice() {
+    return this.cartItemsArray.reduce((prevValue, currValue) => prevValue + currValue.product.price * currValue.quantity, 0 );
   }
 
   getItemById(id: number) {
@@ -33,9 +44,11 @@ export class CartService {
     }
 
     item.quantity++
-    this.totalPrice.update((previousValue:number) => {
+    this.totalPrice.update((previousValue: number) => {
       return previousValue + item.product.price;
     });
+
+    localStorage.setItem("cartItemsArray", JSON.stringify(this.cartItemsArray));
   }
 
   removeItem(item: CartItem) {
@@ -49,6 +62,8 @@ export class CartService {
       const currValue = previousValue - item.product.price;
       return Math.max(currValue, 0);
     });
+
+    localStorage.setItem("cartItemsArray", JSON.stringify(this.cartItemsArray));
   }
 
   addItemToCart(food: Food) {
@@ -62,6 +77,9 @@ export class CartService {
       this.totalPrice.update((previousValue: number) => {
         return previousValue + food.price;
       });
+
+      localStorage.setItem("cartItemsArray", JSON.stringify(this.cartItemsArray));
+      
     } else {
       this.addItem(this.cartItemsArray[index]);
     }
