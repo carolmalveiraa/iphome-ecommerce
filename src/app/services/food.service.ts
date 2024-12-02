@@ -1,5 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Food } from '../models/food';
+
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 
@@ -9,14 +11,11 @@ import { catchError, throwError } from 'rxjs';
 export class FoodService {
   http: HttpClient;
   foodArray: Food [] = [];
+  snackBar: MatSnackBar;
 
   constructor() {
     this.http = inject(HttpClient);
-  }
-
-  private handlePostError(error: HttpErrorResponse) {
-    console.error('Aconteceu um erro:', error.message);
-    return throwError(() => error);
+    this.snackBar = inject(MatSnackBar);
   }
 
   getAllFood() {
@@ -24,7 +23,6 @@ export class FoodService {
   }
 
   createFood(newFood: Food) {
-    return this.http.post<Food[]>("http://localhost:3000/foods", newFood).pipe(catchError(this.handlePostError)
-  );
+    return this.http.post<Food[]>("http://localhost:3000/foods", newFood)
   }
 }

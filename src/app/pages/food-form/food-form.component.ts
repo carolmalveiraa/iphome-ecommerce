@@ -6,6 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { catchError, throwError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-food-form',
@@ -39,11 +41,15 @@ export class FoodFormComponent {
     console.log("Formulário foi Submetido!");
     console.log(this.foodForm.value);
 
-    this.FoodService.createFood(this.foodForm.value).subscribe(() => {
-      this.snackBar.open('Food adicionado com sucesso!', 'Fechar', {duration: 2000});
-      this.router.navigate(['foods']);
-    }, () => {
-      this.snackBar.open('Erro ao adicionar Food!', 'Fechar', {duration: 2000});
+    this.FoodService.createFood(this.foodForm.value).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error(error);
+        this.snackBar.open("Ocorreu um erro ao salvar o item. Tente novamente.", "Fechar", { duration: 5000 });
+        return throwError(error);
+      })
+    ).subscribe(() => {
+      this.snackBar.open("Item salvo com sucesso!", "Fechar", { duration: 5000 });
+      this.router.navigate(['/foods']);
     });
   }
 }
