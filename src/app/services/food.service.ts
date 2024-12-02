@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Food } from '../models/food';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,9 @@ export class FoodService {
     this.http = inject(HttpClient);
   }
 
-  getNextId () {
-    return this.foodArray.length + 1;
+  private handlePostError(error: HttpErrorResponse) {
+    console.error('Aconteceu um erro:', error.message);
+    return throwError(() => error);
   }
 
   getAllFood() {
@@ -22,6 +24,7 @@ export class FoodService {
   }
 
   createFood(newFood: Food) {
-    return this.http.post<Food[]>("http://localhost:3000/foods", newFood);
+    return this.http.post<Food[]>("http://localhost:3000/foods", newFood).pipe(catchError(this.handlePostError)
+  );
   }
 }

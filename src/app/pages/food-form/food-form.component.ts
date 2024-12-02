@@ -40,10 +40,10 @@ export class FoodFormComponent {
     console.log(this.foodForm.value);
 
     this.FoodService.createFood(this.foodForm.value).subscribe(() => {
-      this.snackBar.open('Food adicionado com sucesso!', 'Fechar', {
-        duration: 2000,
-      });
+      this.snackBar.open('Food adicionado com sucesso!', 'Fechar', {duration: 2000});
       this.router.navigate(['foods']);
-  });
-}
+    }, () => {
+      this.snackBar.open('Erro ao adicionar Food!', 'Fechar', {duration: 2000});
+    });
+  }
 }
