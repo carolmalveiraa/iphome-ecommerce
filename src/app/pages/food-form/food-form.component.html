@@ -8,7 +8,9 @@
   <mat-form-field appearance="outline" class="form-field">
     <mat-label>Serves</mat-label>
     <input matInput formControlName="serves"/>
-    <mat-error>Serves is required</mat-error>
+    @if (foodForm.get('price')?.hasError('min')) {
+      <mat-error>Serves is required</mat-error>
+    }
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="form-field">
@@ -25,15 +27,23 @@
   <mat-form-field appearance="outline" class="form-field">
     <mat-label>Price</mat-label>
     <input matInput formControlName="price"/>
-    <mat-error>Price is required</mat-error>
-    <mat-error>Price must be non-negative</mat-error>
+    @if (foodForm.get('price')?.hasError('required')) {
+      <mat-error>Price is required</mat-error>
+    }
+    @if (foodForm.get('price')?.hasError('min')) {
+      <mat-error>Price must be non-negative</mat-error>
+    }
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="form-field">
     <mat-label>Available in Stock</mat-label>
     <input matInput formControlName="avaibleInStock"/>
-    <mat-error>Stock is required</mat-error>
-    <mat-error>Stock must be non-negative</mat-error>
+    @if (foodForm.get('avaibleInStock')?.hasError('required')) {
+      <mat-error>Stock is required</mat-error>
+    }
+    @if (foodForm.get('avaibleInStock')?.hasError('min')) {
+      <mat-error>Stock must be non-negative</mat-error>
+    }
   </mat-form-field>
 
   <button mat-raised-button color="primary" type="submit">Submit</button>

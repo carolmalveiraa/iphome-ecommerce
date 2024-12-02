@@ -25,10 +25,10 @@ export class FoodFormComponent {
     this.foodForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
       serves: new FormControl('', [Validators.required]),
-      imageLink: new FormControl('', [Validators.required]),
-      price: new FormControl(0, [Validators.required]),
+      imageLink: new FormControl('', [Validators.required, Validators.pattern('https?://.+')]),
+      price: new FormControl(0, [Validators.required, Validators.min(0)]),
       description: new FormControl('', [Validators.required]),
-      availabeInStock: new FormControl(0, [Validators.required]),
+      avaibleInStock: new FormControl(0, [Validators.required, Validators.min(0)]),
     });
   }
 
