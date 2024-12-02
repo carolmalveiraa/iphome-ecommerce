@@ -1,4 +1,5 @@
 <div class="container">
+    <h1>Catálogo de Comidas:</h1>
     @for(foodObj of foodArray; track foodObj.id){
         <app-food-card [food]="foodObj"></app-food-card>
     }

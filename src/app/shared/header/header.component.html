@@ -4,8 +4,11 @@
     </button>
     <span>{{ title }}</span>
     <span class="example-spacer"></span>
+    <div>
+       <a mat-button routerLink="/">Foods Catalog</a>
+       <a mat-button routerLink="/form">Add new food</a>
+    </div>
     <button (click)="openCart()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
       <mat-icon>shopping_cart</mat-icon>
     </button>
   </mat-toolbar>
-  
