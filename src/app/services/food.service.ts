@@ -22,6 +22,6 @@ export class FoodService {
   }
 
   createFood(newFood: Food) {
-    this.foodArray.push(newFood);
+    return this.http.post<Food[]>("http://localhost:3000/foods", newFood);
   }
 }

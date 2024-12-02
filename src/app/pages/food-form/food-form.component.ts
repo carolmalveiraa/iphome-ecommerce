@@ -1,4 +1,5 @@
 import { FoodService } from './../../services/food.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, inject } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
   styleUrl: './food-form.component.scss'
 })
 export class FoodFormComponent {
+  private snackBar: MatSnackBar;
   private FoodService: FoodService;
   private router: Router;
   foodForm: FormGroup;
@@ -21,6 +23,7 @@ export class FoodFormComponent {
   constructor() {
     this.FoodService = inject(FoodService);
     this.router = inject(Router);
+    this.snackBar = inject(MatSnackBar);
 
     this.foodForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
@@ -36,12 +39,11 @@ export class FoodFormComponent {
     console.log("Formulário foi Submetido!");
     console.log(this.foodForm.value);
 
-    this.FoodService.createFood({
-      id: this.FoodService.getNextId(),
-      ...this.foodForm.value
-    });
-
-    this.router.navigate(['foods']);
-
-  }
+    this.FoodService.createFood(this.foodForm.value).subscribe(() => {
+      this.snackBar.open('Food adicionado com sucesso!', 'Fechar', {
+        duration: 2000,
+      });
+      this.router.navigate(['foods']);
+  });
+}
 }
