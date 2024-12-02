@@ -1,20 +1,24 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Food } from '../models/food';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FoodService {
+  http: HttpClient;
   foodArray: Food [] = [];
-  
-  constructor() { }
+
+  constructor() {
+    this.http = inject(HttpClient);
+  }
 
   getNextId () {
     return this.foodArray.length + 1;
   }
 
   getAllFood() {
-    return this.foodArray;
+    return this.http.get<Food[]>("http://localhost:3000/foods");
   }
 
   createFood(newFood: Food) {

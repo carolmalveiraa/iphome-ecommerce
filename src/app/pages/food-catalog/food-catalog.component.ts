@@ -17,6 +17,8 @@ export class FoodCatalogComponent {
   constructor() {
     this.foodService = inject(FoodService);
 
-    this.foodArray = this.foodService.getAllFood();
+    this.foodService.getAllFood().subscribe((foodArray: Food[]) => {
+      this.foodArray = foodArray;
+    });
   };
 }
