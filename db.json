@@ -72,5 +72,13 @@
       "description": "O Bauru é um sanduíche emblemático de São Paulo, composto por rosbife, queijo, tomate e picles em pão francês sem miolo",
       "avaibleInStock": "8"
     }
+  ],
+
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin123"
+    }
   ]
 }
