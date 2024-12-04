@@ -39,6 +39,10 @@ export class FoodFormComponent {
   }
 
   submitForm() {
+    if (this.foodForm.invalid) {
+      this.snackBar.open('Formulário possui campos inválidos!', 'Fechar');
+      return;
+    };
     console.log("Formulário foi Submetido!");
     console.log(this.foodForm.value);
 
@@ -46,7 +50,7 @@ export class FoodFormComponent {
       catchError((error: HttpErrorResponse) => {
         console.error(error);
         this.snackBar.open("Ocorreu um erro ao salvar o item. Tente novamente.", "Fechar", { duration: 2000 });
-        return throwError(() => error); 
+        return throwError(() => error);
       })
     ).subscribe(() => {
       this.snackBar.open("Item salvo com sucesso!", "Fechar", { duration: 2000 });
