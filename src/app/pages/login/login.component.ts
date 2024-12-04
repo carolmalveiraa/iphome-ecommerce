@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
@@ -28,49 +28,48 @@ export class LoginComponent {
   loginForm: FormGroup;
   emailError: string = "";
   passwordError: string = "Senha inválida.";
-}
 
-constructor() {
-  this.snackBar = inject(MatSnackBar);
-  this.authService = inject(AuthService);
-  this.router = inject(Router);
+  constructor() {
+    this.snackBar = inject(MatSnackBar);
+    this.authService = inject(AuthService);
+    this.router = inject(Router);
 
-  this.loginForm = new FormGroup({
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    password: new FormControl(null, [Validators.required])
-  });
-}
-
-updateEmailErrorMessage() {
-  if (this.loginForm.controls["email"].hasError('required')) {
-    this.emailError = 'Campo e-mail deve ser preenchido';
-  } else if (this.loginForm.controls["email"].hasError('email')) {
-    this.emailError = 'Campo e-mail inválido';
-  } else {
-    this.emailError = '';
-  }
-}
-
-submitForm() {
-  const loggedIn = this.authService.loginUser(
-    this.loginForm.get("email")?.value,
-    this.loginForm.get("password")?.value
-  );
-
-  if (!loggedIn) {
-    this.snackBar.open(
-      "Não foi possível logar. Tente novamente com credenciais válidas!",
-      "Close",
-      {
-        horizontalPosition: "end",
-        verticalPosition: "top",
-        duration: 5000,
-      }
-    )
-
-    return;
+    this.loginForm = new FormGroup({
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, [Validators.required])
+    });
   }
 
-  this.router.navigate(['form']);
-}
+  updateEmailErrorMessage() {
+    if (this.loginForm.controls["email"].hasError('required')) {
+      this.emailError = 'Campo e-mail deve ser preenchido';
+    } else if (this.loginForm.controls["email"].hasError('email')) {
+      this.emailError = 'Campo e-mail inválido';
+    } else {
+      this.emailError = '';
+    }
+  }
 
+  submitForm() {
+    const loggedIn = this.authService.loginUser(
+      this.loginForm.get("email")?.value,
+      this.loginForm.get("password")?.value
+    );
+
+    if (!loggedIn) {
+      this.snackBar.open(
+        "Não foi possível logar. Tente novamente com credenciais válidas!",
+        "Close",
+        {
+          horizontalPosition: "end",
+          verticalPosition: "top",
+          duration: 5000,
+        }
+      )
+
+      return;
+    }
+
+    this.router.navigate(['form']);
+  }
+}
