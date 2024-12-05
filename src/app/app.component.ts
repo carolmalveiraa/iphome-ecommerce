@@ -3,7 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { HeaderComponent } from './shared/header/header.component';
-import { FoodCatalogComponent } from './pages/food-catalog/food-catalog.component';
 import { CartComponent } from './shared/cart/cart.component';
 import { CartService } from './services/cart.service';
 @Component({

@@ -18,7 +18,7 @@ export class HeaderComponent {
   @Input() drawer!: MatDrawer;
   private authService: AuthService;
   private router: Router;
-  title: string = "Iphome - Delivery";
+  title: string = "Iphome Delivery";
 
 
   constructor() {
