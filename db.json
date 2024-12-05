@@ -53,24 +53,6 @@
       "imageLink": "https://static.ifood-static.com.br/image/upload/t_medium/pratos/6e73dce2-a17f-4aef-9035-1409cea198fe/202408121513_RG6S_i.jpg",
       "price": 39.99,
       "availableInStock": 10
-    },
-    {
-      "id": "7",
-      "title": "Combo Stacker Duplo Bacon",
-      "serves": "1 pessoa",
-      "description": "Um hambúrguer com duas carnes bovinas grelhadas de 57g, pão com gergelim, queijo derretido, fatias de bacon crocante e o exclusivo molho bk stacker. Acompanha batata frita e bebida.",
-      "imageLink": "https://static.ifood-static.com.br/image/upload/t_medium/pratos/6e73dce2-a17f-4aef-9035-1409cea198fe/202408121513_S6C1_i.jpg",
-      "price": 39.99,
-      "availableInStock": 10
-    },
-    {
-      "id": "3ab1",
-      "title": "Bauru",
-      "serves": "1 pessoa",
-      "imageLink": "https://images.unsplash.com/photo-1508737027454-e6454ef45afd?q=80&w=386&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "price": "14",
-      "description": "O Bauru é um sanduíche emblemático de São Paulo, composto por rosbife, queijo, tomate e picles em pão francês sem miolo",
-      "avaibleInStock": "8"
     }
   ],
 

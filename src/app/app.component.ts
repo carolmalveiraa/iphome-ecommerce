@@ -16,5 +16,5 @@ import { FoodFormComponent } from './pages/food-form/food-form.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'iphome-delivery';
+  title = 'iphome';
 }
